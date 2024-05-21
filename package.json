@@ -11,7 +11,7 @@
     "docs:clean-dev": "vuepress-vite dev docs --clean-cache",
     "docs:dev": "vuepress-vite dev docs",
     "docs:update-package": "pnpm dlx vp-update",
-    "push": "git add . && git commit -m 删除相关链接 && git push origin main"
+    "push": "git add . && git commit -m 修改pnpm版本 && git push origin main"
   },
   "keywords": [],
   "author": "",

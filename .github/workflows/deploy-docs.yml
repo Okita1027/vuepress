@@ -4,7 +4,7 @@ name: 部署文档
 on:
   push:
     branches:
-      - master
+      - main
 
 permissions:
   contents: write
@@ -23,7 +23,7 @@ jobs:
       - name: 设置 pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 9
 
 
       - name: 设置 Node.js
