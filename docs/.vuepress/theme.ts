@@ -60,10 +60,10 @@ export default hopeTheme({
             link: "/database/",
             icon: "/icon/database/database.svg",
         },
-        {
-            text: "相关链接",
-            link: "#",
-            icon: "/icon/relevant/link.png",
+        // {
+            // text: "相关链接",
+            // link: "#",
+            // icon: "/icon/relevant/link.png",
             // children: ["https://Okita1027.github.io"]
 /*             children: [
                 {
@@ -78,7 +78,7 @@ export default hopeTheme({
                     children: ["https://www.baidu.com", "https://yiyan.baidu.com"]
                 }
             ] */
-        }
+        // }
     ],
 
     // 侧边栏
