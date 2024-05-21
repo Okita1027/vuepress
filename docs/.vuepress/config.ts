@@ -3,11 +3,17 @@ import viteBundler from "@vuepress/bundler-vite";
 import theme from "./theme.js";
 
 export default defineUserConfig({
-    base: "/",
+
+    port: 8080,
+
+    // 在开发服务器启动后打开浏览器
+    open: true,
+
+    base: "/knowledge-database/",
 
     lang: "zh-CN",
-    title: "文档演示",
-    description: "vuepress-theme-hope 的文档演示",
+    title: "沖田さんの知識ベース",
+    description: "基于VuePress的知识库,主题是hope",
 
     bundler: viteBundler(),
 
