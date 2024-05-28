@@ -1,5 +1,7 @@
 ---
+index: false
 title: 基础
 ---
 
-基础README
+这里是基础篇下的README.md
+

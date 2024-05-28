@@ -35,7 +35,9 @@ export default hopeTheme({
 
     editLink: true,
     contributors: true,
-
+	
+    // 默认显示5层级
+	headerDepth: 5,
 
     // 导航布局
     navbarLayout: {
@@ -83,17 +85,20 @@ export default hopeTheme({
 
     // 侧边栏
     sidebar: {
-        "/basic/": [
-            {
-                text: "基础",
-                link: "/basic/",
-                children: [
-                    "JVM.md",
-                    "JUC.md",
-                    "FunctionalProgramming.md"
-                ]
-            }
-        ],
+        // "/basic/": [
+        //     {
+        //         text: "基础",
+        //         prefix: "/basic/",
+        //         link: "/",
+        //         children: [
+        //             "JVM.md",
+        //             "JUC.md",
+        //             "FunctionalProgramming.md",
+        //             "JDKNewFeature/"
+        //         ]
+        //     }
+        // ],
+        "/basic/": "structure",
         "/database/": [
             {
                 text: "数据库",

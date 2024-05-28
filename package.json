@@ -11,8 +11,8 @@
     "docs:clean-dev": "vuepress-vite dev docs --clean-cache",
     "docs:dev": "vuepress-vite dev docs",
     "docs:update-package": "pnpm dlx vp-update",
-    "push": "git add . && git commit -m default-message && git push origin main",
-    "pushPage": "vuepress build docs && git add . && git commit -m deploy && git push -f https://github.com/Okita1027/knowledge-database.git main:gh-pages"
+    "push": "git add . && git commit -m JDK、JUC && git push origin main",
+    "pushPage": "vuepress-vite build docs && cd docs/.vuepress/dist && git init && git add . && git commit -m deploy && git push -f https://github.com/Okita1027/knowledge-database.git main:gh-pages"
   },
   "keywords": [],
   "author": "",

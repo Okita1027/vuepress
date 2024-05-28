@@ -4,20 +4,27 @@ import theme from "./theme.js";
 
 export default defineUserConfig({
 
-    port: 8080,
+    port: 4000,
 
     // 在开发服务器启动后打开浏览器
-    open: true,
+    open: false,
 
     base: "/knowledge-database/",
 
     lang: "zh-CN",
     title: "沖田さんの知識ベース",
-    description: "基于VuePress的知识库,主题是hope",
+    description: "基于VuePress的知识库,主题hope",
 
     bundler: viteBundler(),
 
     theme,
+	
+    markdown: {
+        headers: {
+            // 根据需要显示2-6层级
+            level: [2,3,4,5,6]
+        }
+    }
 
 
     // 和 PWA 一起启用
