@@ -1,5 +1,6 @@
 ---
 title: Redis
+order: 2
 ---
 
-数据库README.md
+Redis README

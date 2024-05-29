@@ -5,7 +5,7 @@ description: Java函数式编程（Lambda、Stream）
 date: 2024-05-06 09:06:01
 categories: [Java, basic]
 tags: [Java]
-headerDepth: 5
+headerDepth: 4
 order: 1
 ---
 ## 概念
@@ -745,8 +745,8 @@ public class Main {
 其中定义了两个操作函数，一个用于加法，另一个用于乘法，并通过 `operateOnNumbers` 函数分别调用它们。这样就实现了在不同的情况下，使用同一个高阶函数来执行不同的操作。
 
 ## Stream
+<a href="https://gcore.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/basic/functional-programming/StreamAPI.html"  download="StreamAPI.html">下载StreamAPI速查表</a>
 
- **[Stream API 速查表](./FunctionalProgramming/StreamAPI.html)** 
 
 ### 特性
 
@@ -1193,11 +1193,11 @@ System.out.println("collectedList = " + collectedList);	// collectedList = [Alic
 
 ##### 收集器
 
-Collectors提供了很多收集器，[参考](./resource/StreamAPI.html)
+Collectors提供了很多收集器，<a href="https://gcore.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/basic/functional-programming/StreamAPI.html"  download="StreamAPI.html">下载StreamAPI速查表</a>
 
 ##### 下游收集器
 
-做 groupingBy 分组收集时，组内可能需要进一步的数据收集，称为下游收集器，[参考](./FunctionalProgramming/StreamAPI.html)
+做 groupingBy 分组收集时，组内可能需要进一步的数据收集，称为下游收集器，<a href="https://gcore.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/basic/functional-programming/StreamAPI.html"  download="StreamAPI.html">下载StreamAPI速查表</a>
 
 ## 原理
 

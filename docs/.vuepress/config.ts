@@ -1,32 +1,32 @@
-import {defineUserConfig} from "vuepress";
+/** @format */
+
+import { defineUserConfig } from "vuepress";
 import viteBundler from "@vuepress/bundler-vite";
 import theme from "./theme.js";
 
 export default defineUserConfig({
+	port: 4000,
 
-    port: 4000,
+	// 在开发服务器启动后打开浏览器
+	open: false,
 
-    // 在开发服务器启动后打开浏览器
-    open: false,
+	base: "/knowledge-database/",
 
-    base: "/knowledge-database/",
+	lang: "zh-CN",
+	title: "沖田さんの知識ベース",
+	description: "基于VuePress的知识库,主题hope",
 
-    lang: "zh-CN",
-    title: "沖田さんの知識ベース",
-    description: "基于VuePress的知识库,主题hope",
+	bundler: viteBundler(),
 
-    bundler: viteBundler(),
+	theme,
+    
+	// markdown: {
+	// 	headers: {
+	// 		// 根据需要显示2-6层级
+	// 		level: [2, 3, 4, 5]
+	// 	},
+	// },
 
-    theme,
-	
-    markdown: {
-        headers: {
-            // 根据需要显示2-6层级
-            level: [2,3,4,5,6]
-        }
-    }
-
-
-    // 和 PWA 一起启用
-    // shouldPrefetch: false,
+	// 和 PWA 一起启用
+	// shouldPrefetch: false,
 });

@@ -36,8 +36,8 @@ export default hopeTheme({
     editLink: true,
     contributors: true,
 	
-    // 默认显示5层级
-	headerDepth: 5,
+    // 默认显示4层级
+	headerDepth: 4,
 
     // 导航布局
     navbarLayout: {
@@ -61,6 +61,11 @@ export default hopeTheme({
             text: "数据库",
             link: "/database/",
             icon: "/icon/database/database.svg",
+        },
+        {
+            text: "框架",
+            link: "/frame/",
+            icon: "/icon/frame/frame.png",
         },
         // {
             // text: "相关链接",
@@ -99,17 +104,8 @@ export default hopeTheme({
         //     }
         // ],
         "/basic/": "structure",
-        "/database/": [
-            {
-                text: "数据库",
-                link: "/database/",
-                children: [
-                    "MySQL.md",
-                    "Redis.md",
-                    "MongoDB.md"
-                ]
-            }
-        ]
+        "/database/": "structure",
+        "/frame/": "structure",
     },
 
     // 页脚
