@@ -249,7 +249,7 @@ WHERE e.department_id = d.department_id;
 -  文件 
    - xxx.sdi：存储表结构信息
 #### 区别及特点
-![](img/img06.png#id=Eba8c&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235514770-bc324fb4-3c77-4e03-8818-3d59f39021f1.png#averageHue=%23fcfbfb&clientId=u7ed4b1c6-c50c-4&from=paste&height=836&id=u931b5d2a&originHeight=836&originWidth=1089&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67775&status=done&style=none&taskId=ucea0fa88-63aa-4d3f-b7da-47c4ef71ca0&title=&width=1089)
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235514770-bc324fb4-3c77-4e03-8818-3d59f39021f1.png#averageHue=%23fcfbfb&clientId=u7ed4b1c6-c50c-4&from=paste&height=836&id=u931b5d2a&originHeight=836&originWidth=1089&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67775&status=done&style=none&taskId=ucea0fa88-63aa-4d3f-b7da-47c4ef71ca0&title=&width=1089)
 **面试题:**
 InnoDB引擎与MyISAM引擎的区别 ?
 ①. InnoDB引擎, 支持事务, 而MyISAM不支持。
@@ -353,7 +353,7 @@ EXPLAIN 各字段含义：
 #### 二叉树
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235638823-f1df5e1a-eb9c-4c8d-b1fd-2cccb6b9d1ce.png#averageHue=%23f9f7f7&clientId=u7ed4b1c6-c50c-4&from=paste&height=581&id=ua9ab25d7&originHeight=581&originWidth=1149&originalType=binary&ratio=1&rotation=0&showTitle=false&size=143022&status=done&style=none&taskId=u3ca115ab-833a-4579-aa91-b79849cf9c6&title=&width=1149)
 二叉树的缺点可以用红黑树来解决：
-![](img/img08.png#id=bE8L9&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235649882-854392cb-da56-46af-a2fa-bc8cfdf78d5e.png#averageHue=%23f8f1f1&clientId=u7ed4b1c6-c50c-4&from=paste&height=475&id=uc92e6966&originHeight=475&originWidth=587&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36620&status=done&style=none&taskId=u07a458d8-e06b-4591-9939-4e9550f6ae3&title=&width=587)
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235649882-854392cb-da56-46af-a2fa-bc8cfdf78d5e.png#averageHue=%23f8f1f1&clientId=u7ed4b1c6-c50c-4&from=paste&height=475&id=uc92e6966&originHeight=475&originWidth=587&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36620&status=done&style=none&taskId=u07a458d8-e06b-4591-9939-4e9550f6ae3&title=&width=587)
 由于红黑树也是一颗二叉树，所以也会存在一个缺点：
 
 - 大数据量情况下，层级较深，检索速度慢。
