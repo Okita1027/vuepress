@@ -55,17 +55,22 @@ export default hopeTheme({
         {
             text: "基础",
             link: "/basic/",
-            icon: "/icon/basic/java.png",
+            icon: "/icon/java.png",
         },
         {
             text: "数据库",
             link: "/database/",
-            icon: "/icon/database/database.svg",
+            icon: "/icon/database.svg",
         },
         {
             text: "框架",
             link: "/frame/",
-            icon: "/icon/frame/frame.png",
+            icon: "/icon/frame.png",
+        },
+        {
+            text: "前端",
+            link: "/web/",
+            icon: "/icon/web.png",
         },
         // {
             // text: "相关链接",
@@ -106,6 +111,7 @@ export default hopeTheme({
         "/basic/": "structure",
         "/database/": "structure",
         "/frame/": "structure",
+        "/web/": "structure",
     },
 
     // 页脚

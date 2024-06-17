@@ -1,4 +1,4 @@
 ---
-title: Spring
+title: MyBatis
 index: false
 ---

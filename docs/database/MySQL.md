@@ -14,18 +14,19 @@ SELECT column,... FROM table2
 
 - Union
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1695710048157-f2a173d1-8158-429e-b3ad-e723e649f756.png#averageHue=%23fcfca4&clientId=u7a50d435-9bde-4&from=paste&height=326&id=ub52694f5&originHeight=407&originWidth=569&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=30131&status=done&style=none&taskId=u3215f880-cc1c-4775-853e-64972d58532&title=&width=455.2)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/select01.png)
 UNION 操作符返回两个查询的结果集的并集，去除重复记录。
 
 - Union All
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1695710059727-b68ce0bd-2f1b-4240-914a-5327c009639c.png#averageHue=%23fcfca4&clientId=u7a50d435-9bde-4&from=paste&height=317&id=u9290e20a&originHeight=396&originWidth=656&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=34875&status=done&style=none&taskId=u456f17d8-eb05-4d18-8188-4cda7032f4a&title=&width=524.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/select02.png)
 UNION ALL操作符返回两个查询的结果集的并集。对于两个结果集的重复部分，不去重。
+
 > 注意：执行UNION ALL语句时所需要的资源比UNION语句少。如果明确知道合并数据后的结果数据不存在重复数据，或者不需要去除重复的数据，则尽量使用UNION ALL语句，以提高数据查询的效率。
 
 ### 7种外连接
 #### 概览
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1695708562610-710d9fcb-6d9b-471d-a0a9-d3d08ee24fa6.png#averageHue=%23e7c8c8&clientId=u7a50d435-9bde-4&from=paste&height=672&id=u1606ebee&originHeight=840&originWidth=1190&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=566846&status=done&style=none&taskId=ub906531e-0762-4156-b27b-40d41957317&title=&width=952)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/select03.png)
 #### 实现
 ```sql
 #中图：内连接 A∩B
@@ -163,18 +164,19 @@ WHERE e.department_id = d.department_id;
 
 - **赃读**：一个事务读到另外一个事务还没有提交的数据。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235104689-1fa7d561-aef1-4d9b-957b-ed9f695d1101.png#averageHue=%23fcf5f1&clientId=u7ed4b1c6-c50c-4&from=paste&height=248&id=K5SRC&originHeight=248&originWidth=853&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29717&status=done&style=none&taskId=uf4db46ce-078f-4f5d-abda-c01115bec4d&title=&width=853)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/transaction01.png)
 例如：B读取到了A未提交的数据。
 
 - **不可重复读**：一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。
 
-![img02.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235157006-4769c1c4-d906-4d85-a80a-36a3907f50ed.png#averageHue=%23fcf4ef&clientId=u7ed4b1c6-c50c-4&from=paste&height=199&id=GYEWz&originHeight=199&originWidth=899&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35074&status=done&style=none&taskId=u6c8049fc-c37c-4c49-ad5c-467b1d1879a&title=&width=899)
+![img02.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/transaction02.png)
 事务A两次读取同一条记录，但是读取到的数据却是不一样的。
 
 - **幻读**：一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经存在，好像出现了 "幻影"。
 
-![img03.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235187368-f3794ad5-29b2-40f3-8662-df6605088dab.png#averageHue=%23fcf5f1&clientId=u7ed4b1c6-c50c-4&from=paste&height=214&id=u33ef6b0e&originHeight=214&originWidth=902&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35540&status=done&style=none&taskId=u102b1248-78d8-49c0-a3db-e44ee42ab6e&title=&width=902)
+![img03.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/transaction03.png)
 事务A查询数据不存在，事务B插入数据并提交，事务A尝试插入数据缺无法插入，查询数据又查不到。
+
 ### 事务隔离级别
 ![img04.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235225953-570663f9-7250-42d3-933e-22c120b7d624.png#averageHue=%23fcfbfb&clientId=u7ed4b1c6-c50c-4&from=paste&height=310&id=ufbf0e72c&originHeight=310&originWidth=882&originalType=binary&ratio=1&rotation=0&showTitle=false&size=27678&status=done&style=none&taskId=u086fb9d7-9061-4ff4-8a25-792851eef65&title=&width=882)
 
@@ -213,12 +215,12 @@ WHERE e.department_id = d.department_id;
 -  文件 
    -  xxx.ibd：xxx代表的是表名，innoDB引擎的每张表都会对应这样一个表空间文件，存储该表的表结构（frm-早期的 、sdi-新版的）、数据和索引。 
    - `show variables like 'innodb_file_per_table';`
-若Value为ON，则可在MySQL 的Data文件夹下找到 表名.idb的文件
+   若Value为ON，则可在MySQL 的Data文件夹下找到 表名.idb的文件
       - `ibd2sdi xxx.idb`
-在CMD下运行该指令（由MySQL提供）可查询该表的信息 
+   在CMD下运行该指令（由MySQL提供）可查询该表的信息 
 -  逻辑存储结构 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235457102-20342aea-f495-4353-ab21-d6f610e2d365.png#averageHue=%238eca4f&clientId=u7ed4b1c6-c50c-4&from=paste&height=488&id=u047e3a7d&originHeight=488&originWidth=1171&originalType=binary&ratio=1&rotation=0&showTitle=false&size=81565&status=done&style=none&taskId=u40e159ba-21e8-4355-a938-3d259544b07&title=&width=1171)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/engine01.png)
 
 -  表空间 : InnoDB存储引擎逻辑结构的最高层，ibd文件其实就是表空间文件，在表空间中可以包含多个Segment段。 
 -  段 : 表空间是由各个段组成的， 常见的段有数据段、索引段、回滚段等。InnoDB中对于段的管理，都是引擎自身完成，不需要人为对其控制，一个段中包含多个区。 
@@ -249,13 +251,14 @@ WHERE e.department_id = d.department_id;
 -  文件 
    - xxx.sdi：存储表结构信息
 #### 区别及特点
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235514770-bc324fb4-3c77-4e03-8818-3d59f39021f1.png#averageHue=%23fcfbfb&clientId=u7ed4b1c6-c50c-4&from=paste&height=836&id=u931b5d2a&originHeight=836&originWidth=1089&originalType=binary&ratio=1&rotation=0&showTitle=false&size=67775&status=done&style=none&taskId=ucea0fa88-63aa-4d3f-b7da-47c4ef71ca0&title=&width=1089)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/engine02.png)
 **面试题:**
 InnoDB引擎与MyISAM引擎的区别 ?
 ①. InnoDB引擎, 支持事务, 而MyISAM不支持。
 ②. InnoDB引擎, 支持行锁和表锁, 而MyISAM仅支持表锁, 不支持行锁。
 ③. InnoDB引擎, 支持外键, 而MyISAM是不支持的。
 主要是上述三点区别，当然也可以从索引结构、存储限制等方面，更加深入的回答，具体参考如下官方文档：
+
 > [https://dev.mysql.com/doc/refman/8.0/en/innodb-introduction.html](https://dev.mysql.com/doc/refman/8.0/en/innodb-introduction.html)
 > [https://dev.mysql.com/doc/refman/8.0/en/myisam-storage-engine.html](https://dev.mysql.com/doc/refman/8.0/en/myisam-storage-engine.html)
 
@@ -301,13 +304,13 @@ EXPLAIN 各字段含义：
 -  select_type：表示 SELECT 的类型，常见取值有 SIMPLE（简单表，即不适用表连接或者子查询）、PRIMARY（主查询，即外层的查询）、UNION（UNION中的第二个或者后面的查询语句）、SUBQUERY（SELECT/WHERE之后包含了子查询）等 
 -  type：表示连接类型，性能由好到差的连接类型为 NULL、system、const、eq_ref、ref、range、index、all 
    - 常见的扫描方式
-1、system：系统表，少量数据，往往不需要进行磁盘IO；
-2、const：常量连接；
-3、eq_ref：主键索引(primary key)或者非空唯一索引(unique not null)等值扫描；
-4、ref：非主键非唯一索引等值扫描；
-5、range：范围扫描；
-6、index：索引树扫描；
-7、ALL：全表扫描(full table scan)；
+   1、system：系统表，少量数据，往往不需要进行磁盘IO；
+   2、const：常量连接；
+   3、eq_ref：主键索引(primary key)或者非空唯一索引(unique not null)等值扫描；
+   4、ref：非主键非唯一索引等值扫描；
+   5、range：范围扫描；
+   6、index：索引树扫描；
+   7、ALL：全表扫描(full table scan)；
    - 各扫描类型的要点
 
 1、system最快：不进行磁盘IO　　
@@ -351,16 +354,16 @@ EXPLAIN 各字段含义：
 | Full-text | 5.6版本后支持 | 支持 | 不支持 |
 
 #### 二叉树
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235638823-f1df5e1a-eb9c-4c8d-b1fd-2cccb6b9d1ce.png#averageHue=%23f9f7f7&clientId=u7ed4b1c6-c50c-4&from=paste&height=581&id=ua9ab25d7&originHeight=581&originWidth=1149&originalType=binary&ratio=1&rotation=0&showTitle=false&size=143022&status=done&style=none&taskId=u3ca115ab-833a-4579-aa91-b79849cf9c6&title=&width=1149)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/index01.png)
 二叉树的缺点可以用红黑树来解决：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235649882-854392cb-da56-46af-a2fa-bc8cfdf78d5e.png#averageHue=%23f8f1f1&clientId=u7ed4b1c6-c50c-4&from=paste&height=475&id=uc92e6966&originHeight=475&originWidth=587&originalType=binary&ratio=1&rotation=0&showTitle=false&size=36620&status=done&style=none&taskId=u07a458d8-e06b-4591-9939-4e9550f6ae3&title=&width=587)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/index02.png)
 由于红黑树也是一颗二叉树，所以也会存在一个缺点：
 
 - 大数据量情况下，层级较深，检索速度慢。
 #### B-树
 B-Tree，B树是一种多叉路衡查找树，相对于二叉树，B树每个节点可以有多个分支，即多叉。
 以一颗最大度数（max-degree）为5(5阶)的b-tree为例，那这个B树每个节点最多存储4个key，5个指针：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235668949-f2bb67d5-12b2-4cb2-9c57-016100e5d421.png#averageHue=%23eeeeee&clientId=u7ed4b1c6-c50c-4&from=paste&height=317&id=u8f119474&originHeight=317&originWidth=1051&originalType=binary&ratio=1&rotation=0&showTitle=false&size=44654&status=done&style=none&taskId=u204058a4-52bf-4d6b-a4f6-649ee663db1&title=&width=1051)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/index03.png)
 树的度数指的是一个节点的子节点个数。
 特点：
 
@@ -377,7 +380,7 @@ B+树是B树的变种，结构图：
 -  绿色框框起来的部分，是索引部分，仅仅起到索引数据的作用，不存储数据。 
 -  红色框框起来的部分，是数据存储部分，在其叶子节点中要存储具体的数据 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235688662-eb0f5f53-f8e3-4ba0-b0a5-c56440e4f0f9.png#averageHue=%23efeded&clientId=u7ed4b1c6-c50c-4&from=paste&height=299&id=u5c223545&originHeight=299&originWidth=1033&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48665&status=done&style=none&taskId=ue52f5c9d-7649-447a-a2bb-081450884ac&title=&width=1033)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/index04.png)
 特点：
 
 - 所有的数据都会出现在叶子节点。
@@ -385,11 +388,12 @@ B+树是B树的变种，结构图：
 - 非叶子节点仅仅起到索引数据作用，具体的数据都是在叶子节点存放的。
 #### MySQL优化的B+树
 MySQL 索引数据结构对经典的 B+Tree 进行了优化。在原 B+Tree 的基础上，增加一个指向相邻叶子节点的链表指针，就形成了带有顺序指针的 B+Tree，提高区间访问的性能。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235704149-4bb2f7ba-ac0f-43c5-b386-ed973f79efb0.png#averageHue=%23f0eae6&clientId=u7ed4b1c6-c50c-4&from=paste&height=379&id=u88a77edd&originHeight=379&originWidth=1175&originalType=binary&ratio=1&rotation=0&showTitle=false&size=69697&status=done&style=none&taskId=ub20e4e76-b443-40eb-9de0-0db3a14f917&title=&width=1175)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/index05.png)
+
 #### Hash
 哈希索引就是采用一定的hash算法，将键值换算成新的hash值，映射到对应的槽位上，然后存储在hash表中。
 如果两个（或多个）键值，映射到一个相同的槽位上，他们就产生了hash冲突（也称为hash碰撞），可以通过链表来解决。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235712844-699ff348-a28b-4647-8f3f-1d1f0a637c9e.png#averageHue=%23f5ede2&clientId=u7ed4b1c6-c50c-4&from=paste&height=407&id=u34a10c96&originHeight=407&originWidth=1159&originalType=binary&ratio=1&rotation=0&showTitle=false&size=98696&status=done&style=none&taskId=u0f833ccc-4e0d-47fb-9796-284238e192b&title=&width=1159)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/index06.png)
 特点：
 
 - Hash索引只能用于对等比较（=、in），不支持范围查询（betwwn、>、<、...）
@@ -423,8 +427,8 @@ MySQL 索引数据结构对经典的 B+Tree 进行了优化。在原 B+Tree 的�
 | 二级索引(Secondary Index) | 将数据与索引分开存储，索引结构的叶子节点关联的是对应的主键 | 可以存在多个 |
 
 演示图：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235753599-ab2e7c51-becd-4ef5-a71e-1b628b41e471.png#averageHue=%23f9f7f5&clientId=u7ed4b1c6-c50c-4&from=paste&height=586&id=u2509c2f1&originHeight=586&originWidth=1152&originalType=binary&ratio=1&rotation=0&showTitle=false&size=229362&status=done&style=none&taskId=u98a60dc1-3db2-4141-89da-73c6a3df36e&title=&width=1152)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235777916-4d40e15c-e997-4d6b-98a0-3bf2e1a40565.png#averageHue=%23faf9f7&clientId=u7ed4b1c6-c50c-4&from=paste&height=678&id=u55b778c5&originHeight=678&originWidth=1304&originalType=binary&ratio=1&rotation=0&showTitle=false&size=117101&status=done&style=none&taskId=u35da0da5-6b0c-4a1b-87d3-5dd86d85664&title=&width=1304)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/index07.png)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/index08.png)
 语句执行具体过程如下:
 ①. 由于是根据name字段进行查询，所以先根据name='Arm'到name字段的二级索引中进行匹配查找。但是在二级索引中只能查找到 Arm 对应的主键值 10。
 ②. 由于查询返回的数据是*，所以此时，还需要根据主键值10，到聚集索引中查找10对应的记录，最终找到10对应的行row。
@@ -500,7 +504,7 @@ use 是建议，实际使用哪个索引 MySQL 还会自己权衡运行速度去
 -  如果在聚集索引中直接能找到对应的行，则直接返回行数据，只需要一次查询，哪怕是select *；如果在辅助索引中找聚集索引，如`select id, name from xxx where name='xxx';`，也只需要通过辅助索引(name)查找到对应的id，返回name和name索引对应的id即可，只需要一次查询；如果是通过辅助索引查找其他字段，则需要回表查询，如`select id, name, gender from xxx where name='xxx';` 
 -  尽量不要用`select *`，容易出现回表查询，降低效率，除非有联合索引包含了所有字段 
 -  面试题：一张表，有四个字段（id, username, password, status），由于数据量大，需要对以下SQL语句进行优化，该如何进行才是最优方案：
-`select id, username, password from tb_user where username='itcast';` 
+   `select id, username, password from tb_user where username='itcast';` 
    - 解：给username和password字段建立联合索引，则不需要回表查询，直接覆盖索引
 #### 前缀索引
 当字段类型为字符串（varchar, text等）时，有时候需要索引很长的字符串，这会让索引变得很大，查询时，浪费大量的磁盘IO，影响查询效率，此时可以只降字符串的一部分前缀，建立索引，这样可以大大节约索引空间，从而提高索引效率。
@@ -567,18 +571,20 @@ load data local infile '/root/sql1.log' into table 'tb_user' fields terminated b
 ### 主键优化
 #### 数据组织方式
 在InnoDB存储引擎中，表数据都是根据主键顺序组织存放的，这种存储方式的表称为索引组织表(index organized table IOT)。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235979949-f2062dae-0bf7-40f6-9358-81b1db8b6195.png#averageHue=%23faf3ed&clientId=u7ed4b1c6-c50c-4&from=paste&height=468&id=u3cbf975f&originHeight=468&originWidth=1244&originalType=binary&ratio=1&rotation=0&showTitle=false&size=91587&status=done&style=none&taskId=uf95d5a81-f911-4f59-b18d-07c858046f6&title=&width=1244)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/sql01.png)
 行数据，都是存储在聚集索引的叶子节点上的。InnoDB的逻辑结构图：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682235986389-0d2fd278-e20e-4cc0-a694-0e8370182129.png#averageHue=%2394cb5a&clientId=u7ed4b1c6-c50c-4&from=paste&height=660&id=uf2eadf24&originHeight=660&originWidth=1595&originalType=binary&ratio=1&rotation=0&showTitle=false&size=168149&status=done&style=none&taskId=u5f39bb4f-c10b-438e-a678-d774e232009&title=&width=1595)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/sql02.png)
 InnoDB引擎中，数据行是记录在逻辑结构 page 页中的，而每一个页的大小是固定的，默认16K。
 那也就意味着， 一个页中所存储的行也是有限的，如果插入的数据行row在该页存储不小，将会存储到下一个页中，页与页之间会通过指针连接。
+
 #### 页分裂
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682236003257-c081a4f8-939c-4005-b5e5-86d0752847aa.png#averageHue=%23fdfaf6&clientId=u7ed4b1c6-c50c-4&from=paste&height=597&id=u0a843b06&originHeight=597&originWidth=1603&originalType=binary&ratio=1&rotation=0&showTitle=false&size=177062&status=done&style=none&taskId=u9cd00cc3-63c1-4812-aaf0-23224dbb797&title=&width=1603)![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682236019546-c126c377-97e1-4c20-af07-38602c712f16.png#averageHue=%23f6d7b4&clientId=u7ed4b1c6-c50c-4&from=paste&height=720&id=u5f47ce7e&originHeight=720&originWidth=1618&originalType=binary&ratio=1&rotation=0&showTitle=false&size=408799&status=done&style=none&taskId=ue1459482-76fc-43fc-a9ba-41ac86c3567&title=&width=1618)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/sql03.png)![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/sql04.png)
 #### 页合并
 当删除一行记录时，实际上记录并没有被物理删除，只是记录被标记（flaged）为删除并且它的空间变得允许被其他记录声明使用。
 当页中删除的记录达到 MERGE_THRESHOLD（默认为页的50%），InnoDB会开始寻找最靠近的页（前或后）看看是否可以将两个页合并以优化空间使用。
 MERGE_THRESHOLD：合并页的阈值，可以自己设置，在创建表或者创建索引时指定。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1682236056284-fe2757dd-962b-463c-8caf-4e66a1a5fa3f.png#averageHue=%23fdf5ed&clientId=u7ed4b1c6-c50c-4&from=paste&height=864&id=u387acbb0&originHeight=864&originWidth=1610&originalType=binary&ratio=1&rotation=0&showTitle=false&size=185844&status=done&style=none&taskId=u4f69e743-e249-466e-8ce8-fb9a988521b&title=&width=1610)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/sql05.png)
+
 #### 索引设计原则
 
 -  满足业务需求的情况下，尽量降低主键的长度。 
@@ -692,13 +698,13 @@ MDL加锁过程是系统自动控制，无需显式使用，在访问一张表�
 这里的元数据，可以简单理解为就是一张表的表结构。 也就是说，某一张表涉及到未提交的事务时，是不能够修改这张表的表结构的。 
 在MySQL5.5中引入了MDL，当对一张表进行增删改查的时候，加MDL读锁(共享)；当对表结构进行变更操作的时候，加MDL写锁(排他)。 
 常见的SQL操作时，所添加的元数据锁：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696917287084-58616c3e-5564-4747-9e01-5dfeb939f405.png#averageHue=%23fcfcfb&clientId=u196a97d2-659f-4&from=paste&height=603&id=u8d0d769e&originHeight=754&originWidth=1283&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=96207&status=done&style=none&taskId=u1142c1f4-5950-43df-8c2a-c1bf7709ae5&title=&width=1026.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/lock01.png)
 
 ```sql
 select object_type,object_schema,object_name,lock_type,lock_duration from
 performance_schema.metadata_locks ;
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696917781721-2f70a0b1-39be-4a7f-8fca-eb7e59687b5b.png#averageHue=%2322619d&clientId=u196a97d2-659f-4&from=paste&height=254&id=u81c1339d&originHeight=317&originWidth=1268&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=425415&status=done&style=none&taskId=u478fa636-ccc9-4716-98fb-b7b4af184c3&title=&width=1014.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/lock02.png)
 > 总结：
 > 多个客户端不能同时对同一张表进行CRUD、修改表结构的操作，这个过程由系统控制。
 
@@ -723,17 +729,18 @@ InnoDB的数据是基于索引组织的，行锁是通过对索引上的索引�
 - 行锁（Record Lock）：锁定单个行记录的锁，防止其他事务对此行进行update和delete。在 
 
 RC、RR隔离级别下都支持。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696919200365-9e7b68eb-7617-479e-a04c-d60f73b9a64a.png#averageHue=%23f4cfa2&clientId=u3661f883-0ae6-4&from=paste&height=125&id=u6dc9c4df&originHeight=156&originWidth=1460&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=60004&status=done&style=none&taskId=u682f3f22-827b-43a8-986a-9c8e1dd1c03&title=&width=1168)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/lock03.png)
 
 - 间隙锁（Gap Lock）：锁定索引记录间隙（不含该记录），确保索引记录间隙不变，防止其他事 
 
 务在这个间隙进行insert，产生幻读。在RR隔离级别下都支持。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696919219121-37331d77-69a1-4dee-9008-ee579827d96f.png#averageHue=%23f6d0a3&clientId=u3661f883-0ae6-4&from=paste&height=163&id=ua0975a23&originHeight=204&originWidth=1408&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=65623&status=done&style=none&taskId=u77751f04-b7d9-4576-968e-08cb72247bf&title=&width=1126.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/lock04.png)
 
 - 临键锁（Next-Key Lock）：行锁和间隙锁组合，同时锁住数据，并锁住数据前面的间隙Gap。 
 
 在RR隔离级别下支持。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696919225825-f27d94d9-5194-4ac9-9855-728b888b6c7a.png#averageHue=%23f6d0a2&clientId=u3661f883-0ae6-4&from=paste&height=164&id=uf4c91d38&originHeight=205&originWidth=1409&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=70137&status=done&style=none&taskId=ucff97084-c8fa-474e-93b5-48da19a19c2&title=&width=1127.2)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/lock05.png)
+
 #### 行锁
 InnoDB实现了以下两种类型的行锁： 
 
@@ -741,9 +748,10 @@ InnoDB实现了以下两种类型的行锁：
 - 排他锁（X）：允许获取排他锁的事务更新数据，阻止其他事务获得相同数据集的共享锁和排他锁。
 
 两种行锁的兼容情况如下:
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696919341265-6dbec662-7bf0-4cfb-891a-ad1446b2ed7e.png#averageHue=%23d7a6a4&clientId=u3661f883-0ae6-4&from=paste&height=230&id=u4a919296&originHeight=288&originWidth=1266&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=50312&status=done&style=none&taskId=u5f8c6f5c-a95e-411d-878a-e4599030c07&title=&width=1012.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/lock06.png)
 常见的SQL语句在执行时所加的行锁如下：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696919838509-95260586-e492-446c-99d5-82c55fabc22c.png#averageHue=%23fcfbfb&clientId=u3661f883-0ae6-4&from=paste&height=602&id=u022335fc&originHeight=753&originWidth=1294&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=83884&status=done&style=none&taskId=u43814cd5-b8a9-4499-9b85-3af60075201&title=&width=1035.2)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/lock07.png)
+
 > 在MySQL8.0某个版本后，SELECT ... LOCK IN SHARE MODE 建议改为SELECT ... FOR SHARE
 > SELECT 一定要在手动加锁的情况下才能防止幻读。
 > 事务开启之后，读取数据的时候是使用的【临键锁】，根据索引而改变成不同的锁。 
@@ -775,7 +783,7 @@ SELECT * FROM student WHERE id >= 100 AND age >= 18 FOR UPDATE;
 
 为18的数据，并加上共享锁，我们是只锁定18这一行就可以了吗？ 并不是，因为是非唯一索引，这个 
 结构中可能有多个18的存在，所以，在加锁时会继续往后找，找到一个不满足条件的值（当前案例中也就是29）。此时会对18加临键锁，并对29之前的间隙加锁。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696923736442-4e6e3054-bf5d-473e-84a4-ae43629ec460.png#averageHue=%23d3dfa5&clientId=uf91649dc-00f2-4&from=paste&height=129&id=ue99da71a&originHeight=161&originWidth=1488&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=61497&status=done&style=none&taskId=ufc8a82f1-cbcf-48a9-97bf-af8b19c00a7&title=&width=1190.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/lock08.png)
 
 - 索引上的范围查询(唯一索引)--会访问到不满足条件的第一个值为止。
    - 举个例子来说明，假设我们有一个学生表（student），表中有学生的学号（id）、姓名（name）和年龄（age）三个字段，我们为学号字段创建了一个唯一索引。现在我们想要查找年龄在 18 到 20 岁之间的学生信息，可以使用以下 SQL 语句：
@@ -797,7 +805,7 @@ SELECT * FROM student WHERE id >= 100 AND age <= 20;
 
 ## InnoDB引擎
 ### **逻辑存储结构 **
-InnoDB的逻辑存储结构如下图所示: ![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696925509721-7383376a-656e-442e-9d85-32bfe902e880.png#averageHue=%238eca57&clientId=uf91649dc-00f2-4&from=paste&height=509&id=ufa58f364&originHeight=636&originWidth=1279&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=160017&status=done&style=none&taskId=ud881dd8b-3701-46b0-a55e-66664d08eee&title=&width=1023.2)
+InnoDB的逻辑存储结构如下图所示: ![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB01.png)
 1). 表空间表空间是InnoDB存储引擎逻辑结构的最高层， 如果用户启用了参数 innodb_file_per_table(在 
 8.0版本中默认开启) ，则每张表都会有一个表空间（xxx.ibd），一个mysql实例可以对应多个表空 
 间，用于存储记录、索引等数据。 
@@ -817,11 +825,12 @@ InnoDB 存储引擎每次从磁盘申请 4-5 个区。
 Trx_id：每次对某条记录进行改动时，都会把对应的事务id赋值给trx_id隐藏列。 
 Roll_pointer：每次对某条引记录进行改动时，都会把旧的版本写入到undo日志中，然后这个 
 隐藏列就相当于一个指针，可以通过它来找到该记录修改前的信息。
+
 ### 架构
 #### 概述
-MySQL5.5 版本开始，默认使用InnoDB存储引擎，它擅长事务处理，具有崩溃恢复特性，在日常开发 中使用非常广泛。下面是InnoDB架构图，左侧为内存结构，右侧为磁盘结构。![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696925574622-89e651e9-6a6d-4425-a09d-b81b0b59d95c.png#averageHue=%23efefee&clientId=uf91649dc-00f2-4&from=paste&height=641&id=ub2df7e4c&originHeight=801&originWidth=1109&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=394548&status=done&style=none&taskId=uddb953b6-0fdd-4f83-824e-b1033ea3e5c&title=&width=887.2)
+MySQL5.5 版本开始，默认使用InnoDB存储引擎，它擅长事务处理，具有崩溃恢复特性，在日常开发 中使用非常广泛。下面是InnoDB架构图，左侧为内存结构，右侧为磁盘结构。![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB02.png)
 #### 内存结构	
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1696925600516-d3433b2b-6d42-482e-a272-092bff006a25.png#averageHue=%23f0efee&clientId=uf91649dc-00f2-4&from=paste&height=581&id=u258aa1a5&originHeight=726&originWidth=337&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=92007&status=done&style=none&taskId=u618b9aa9-85a6-48a4-9c7f-0ffefb1f1c3&title=&width=269.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB03.png)
 在左侧的内存结构中，主要分为四大块儿： Buffer Pool、Change Buffer、Adaptive Hash Index、Log Buffer。
 
 1. Buffer Pool 
@@ -861,22 +870,22 @@ innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包�
 1: 日志在每次事务提交时写入并刷新到磁盘，默认值。 
 0: 每秒将日志写入并刷新到磁盘一次。2: 日志在每次事务提交后写入，并每秒刷新到磁盘一次。
 ### 磁盘结构
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697522226157-2962ebd2-94bc-4a42-95a9-b197e72ed7d8.png#averageHue=%23f0f0ef&clientId=u02c600bf-edd1-4&from=paste&height=574&id=u8b44f71f&originHeight=717&originWidth=583&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=217500&status=done&style=none&taskId=u17530635-eda3-47fb-8d69-ce10f449519&title=&width=466.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB04.png)
 
 1. System Tablespace 
 
 系统表空间是更改缓冲区的存储区域。如果表是在系统表空间而不是每个表文件或通用表空间中创建 的，它也可能包含表和索引数据。(在MySQL5.x版本中还包含InnoDB数据字典、undolog等) 
 参数：innodb_data_file_path
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697522405959-49d05ebf-a534-4bab-abe1-aed00853142d.png#averageHue=%23171512&clientId=u02c600bf-edd1-4&from=paste&height=121&id=u09384653&originHeight=151&originWidth=517&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=11352&status=done&style=none&taskId=u7199c6d6-4d2d-4399-ba0d-e2c7c18c03e&title=&width=413.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB05.png)
 系统表空间，默认的文件名叫 ibdata1。
 
 2. File-Per-Table Tablespaces
 
 如果开启了innodb_file_per_table开关 ，则每个表的文件,表空间包含单个InnoDB表的数据和索引 ，并存储在文件系统上的单个数据文件中。 
 开关参数：innodb_file_per_table ，该参数默认开启。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697523058109-689d27be-46f4-4fdf-8bfd-b806ec97cb06.png#averageHue=%23131110&clientId=u02c600bf-edd1-4&from=paste&height=122&id=u32d44f8e&originHeight=153&originWidth=532&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=10511&status=done&style=none&taskId=ue29cf52a-bc04-41e9-a34a-66ecb572701&title=&width=425.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB06.png)
 那也就是说，我们每创建一个表，都会产生一个表空间文件，如图：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697523135278-08dc16ea-b9d7-45a9-b7e3-44b87ad42901.png#averageHue=%2329487b&clientId=u02c600bf-edd1-4&from=paste&height=224&id=u840e4fc4&originHeight=280&originWidth=1139&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=296246&status=done&style=none&taskId=u295f5105-0d20-44fd-92a9-0be9a63250b&title=&width=911.2)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB07.png)
 
 3. General Tablespaces
 
@@ -885,12 +894,12 @@ innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包�
 - 创建表空间
 
 `CREATE TABLESPACE ts_name ADD DATAFILE 'file_name' ENGINE = engine_name; `
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697523287946-e79150da-6b37-48b9-b533-5adf22f4197d.png#averageHue=%23244d86&clientId=u02c600bf-edd1-4&from=paste&height=70&id=ua0bdab91&originHeight=87&originWidth=1600&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=158094&status=done&style=none&taskId=u6ae5a786-9b68-40f4-ad1a-3d9a4670b24&title=&width=1280)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB08.png)
 
 - 创建表时指定表空间
 
 `CREATE TABLE xxx ... TABLESPACE ts_name;`
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697523351410-a1673bcd-5d08-4261-906c-815e66959f5c.png#averageHue=%231f5291&clientId=u02c600bf-edd1-4&from=paste&height=43&id=u5bb88947&originHeight=54&originWidth=1215&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=85353&status=done&style=none&taskId=ufd2dadbc-9660-41e0-a167-b88f6c59dc4&title=&width=972)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB08.png)
 
 4. Undo Tablespaces
 
@@ -903,7 +912,7 @@ InnoDB 使用会话临时表空间和全局临时表空间。存储用户创建�
 6. Doublewrite Buffer Files
 
 双写缓冲区，innoDB引擎将数据页从Buffer Pool刷新到磁盘前，先将数据页写入双写缓冲区文件中，便于系统异常时恢复数据。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697523467863-b371fc11-a77a-4d11-ae1c-c86d506d46f8.png#averageHue=%23f5f2f0&clientId=u02c600bf-edd1-4&from=paste&height=85&id=u9ac00d94&originHeight=106&originWidth=311&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=26671&status=done&style=none&taskId=ud65dabb1-ab5b-4a80-9f71-765ffc7b4f7&title=&width=248.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB09.png)
 
 7. Redo Log
 
@@ -911,15 +920,16 @@ InnoDB 使用会话临时表空间和全局临时表空间。存储用户创建�
 buffer）以及重做日志文件（redo log）,前者是在内存中，后者在磁盘中。当事务提交之后会把所 
 有修改信息都会存到该日志中, 用于在刷新脏页到磁盘时,发生错误时, 进行数据恢复使用。 
 以循环方式写入重做日志文件，涉及两个文件：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697523522855-19ebfaf0-8fc4-423d-a662-0dc46581bb8e.png#averageHue=%23f6f4f1&clientId=u02c600bf-edd1-4&from=paste&height=86&id=u031b1319&originHeight=108&originWidth=211&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=16020&status=done&style=none&taskId=uf5f9903c-d38b-4e3d-a6f4-09459a1595e&title=&width=168.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB10.png)
 
 ---
 
 前面我们介绍了InnoDB的内存结构，以及磁盘结构，那么内存中我们所更新的数据，又是如何到磁盘 
 中的呢？ 此时，就涉及到一组后台线程，接下来，就来介绍一些InnoDB中涉及到的后台线程。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697523599819-516d2ad7-04d8-400a-a993-91efefefbd29.png#averageHue=%23efefee&clientId=u02c600bf-edd1-4&from=paste&height=650&id=ub074593e&originHeight=812&originWidth=1142&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=408585&status=done&style=none&taskId=u1625be5f-db11-4c32-acc4-762ee0687a0&title=&width=913.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB11.png)
+
 ### 后台线程
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697523638358-90c57712-463e-433e-8d9b-afe74127bbcd.png#averageHue=%23fafafa&clientId=u02c600bf-edd1-4&from=paste&height=663&id=u757ae308&originHeight=829&originWidth=893&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=109897&status=done&style=none&taskId=u0bb549ce-b611-45c4-942b-31bdbb982d1&title=&width=714.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB12.png)
 在InnoDB的后台线程中，分为4类，分别是：Master Thread 、IO Thread、Purge Thread、 
 Page Cleaner Thread。
 
@@ -943,7 +953,7 @@ Thread主要负责这些IO请求的回调。
 ```sql
 show engine innodb status \G;
 ```
-![部分信息](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697525109071-2aa556f3-a9a6-4d3b-8790-7a273858c356.png#averageHue=%23151310&clientId=u02c600bf-edd1-4&from=paste&height=816&id=u76a3fe2b&originHeight=1020&originWidth=715&originalType=binary&ratio=1.25&rotation=0&showTitle=true&size=116979&status=done&style=none&taskId=u9dfca972-be96-4f86-a890-803a74ebcd2&title=%E9%83%A8%E5%88%86%E4%BF%A1%E6%81%AF&width=572 "部分信息")
+![部分信息](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB13.png "部分信息")
 
 3. Purge Thread
 
@@ -968,12 +978,13 @@ show engine innodb status \G;
 
 研究事务的原理，就是研究MySQL的InnoDB引擎是如何保证事务的这四大特性。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697525541532-d5ccf52e-e950-4b93-be2b-1573dca6497f.png#averageHue=%23fcfbf8&clientId=u02c600bf-edd1-4&from=paste&height=189&id=ub907dbf9&originHeight=236&originWidth=1295&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=99990&status=done&style=none&taskId=u9a33b46c-bb1c-4d75-b1c6-2617174e70a&title=&width=1036)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB14.png)
 对于这四大特性，实际上分为两个部分。 其中的原子性、一致性、持久化，实际上是由InnoDB中的 
 两份日志来保证的，一份是redo log日志，一份是undo log日志。 而持久性是通过数据库的锁， 
 加上MVCC来保证的。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697525586364-753e707a-6369-40d0-9b2f-061540009f82.png#averageHue=%23fcfbfa&clientId=u02c600bf-edd1-4&from=paste&height=376&id=u13a2dd0b&originHeight=470&originWidth=1266&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=128154&status=done&style=none&taskId=u6ec0027b-c656-481b-8abb-677cee446c5&title=&width=1012.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB15.png)
 事务原理，主要就是研究redolog，undolog以及MVCC。
+
 #### redo log
 重做日志，记录的是事务提交时数据页的物理修改，是用来实现事务的持久性。 
 该日志文件由两部分组成：重做日志缓冲（redo log buffer）以及重做日志文件（redo log 
@@ -983,8 +994,8 @@ file）,前者是在内存中，后者在磁盘中。当事务提交之后会把
 ---
 
 如果没有redolog，可能会存在什么问题的？
-在InnoDB引擎中的内存结构中，主要的内存区域就是缓冲池，在缓冲池中缓存了很多的数据页。 当我们在一个事务中，执行多个增删改的操作时，InnoDB引擎会先操作缓冲池中的数据，如果缓冲区没有对应的数据，会通过后台线程将磁盘中的数据加载出来，存放在缓冲区中，然后将缓冲池中的数据修改，修改后的数据页我们称为脏页。 而脏页则会在一定的时机，通过后台线程刷新到磁盘中，从而保证缓冲区与磁盘的数据一致。 而缓冲区的脏页数据并不是实时刷新的，而是一段时间之后将缓冲区的数据刷新到磁盘中，假如刷新到磁盘的过程出错了，而提示给用户事务提交成功，而数据却 没有持久化下来，这就出现问题了，没有保证事务的持久性。	![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697526497715-cdc7fb97-2cf5-4ed1-aa60-c01c7f881d36.png#averageHue=%23faefe6&clientId=u02c600bf-edd1-4&from=paste&height=374&id=u82051313&originHeight=467&originWidth=1278&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=52744&status=done&style=none&taskId=u26cafa23-38bd-4355-afea-1f6224c3d08&title=&width=1022.4)
-如何解决上述的问题呢？ 在InnoDB中提供了一份日志 redo log，通过redolog如何解决这个问题。![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697526522310-8f1b71e7-11ed-49ec-b60b-ddd31d720aaa.png#averageHue=%23faf0e8&clientId=u02c600bf-edd1-4&from=paste&height=402&id=u0e9ae690&originHeight=503&originWidth=1295&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=70556&status=done&style=none&taskId=ud073d955-17f0-460f-b26c-df23bdb7ca8&title=&width=1036)
+在InnoDB引擎中的内存结构中，主要的内存区域就是缓冲池，在缓冲池中缓存了很多的数据页。 当我们在一个事务中，执行多个增删改的操作时，InnoDB引擎会先操作缓冲池中的数据，如果缓冲区没有对应的数据，会通过后台线程将磁盘中的数据加载出来，存放在缓冲区中，然后将缓冲池中的数据修改，修改后的数据页我们称为脏页。 而脏页则会在一定的时机，通过后台线程刷新到磁盘中，从而保证缓冲区与磁盘的数据一致。 而缓冲区的脏页数据并不是实时刷新的，而是一段时间之后将缓冲区的数据刷新到磁盘中，假如刷新到磁盘的过程出错了，而提示给用户事务提交成功，而数据却 没有持久化下来，这就出现问题了，没有保证事务的持久性。	![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB16.png)
+如何解决上述的问题呢？ 在InnoDB中提供了一份日志 redo log，通过redolog如何解决这个问题。![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/InnoDB17.png)
 有了redolog之后，当对缓冲区的数据进行增删改之后，会首先将操作的数据页的变化，记录在redo 
 log buffer中。在事务提交时，会将redo log buffer中的数据刷新到redo log磁盘文件中。 
 过一段时间之后，如果刷新缓冲区的脏页到磁盘时，发生错误，此时就可以借助于redo log进行数据 
@@ -1014,7 +1025,7 @@ Undo log存储：undo log采用段的方式进行管理和记录，存放在前�
 
 读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加 
 锁。对于我们日常的操作，如：select ... lock in share mode(共享锁)，select ... for update、update、insert、delete(排他锁)都是一种当前读。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697528831939-4a9ce4ae-76fd-4649-b2bf-3b920c16b95e.png#averageHue=%232169ac&clientId=u02c600bf-edd1-4&from=paste&height=544&id=ub8e74a52&originHeight=680&originWidth=1154&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=620535&status=done&style=none&taskId=u90c201f8-60d4-4640-92bd-c5bb11f0d73&title=&width=923.2)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC01.png)
 在测试中我们可以看到，即使是在默认的RR隔离级别下，事务A中依然可以读取到事务B最新提交的内 容，因为在查询语句后面加上了 lock in share mode 共享锁，此时是当前读操作。当然，当我们加排他锁的时候，也是当前读操作。
 
 2. 快照读
@@ -1023,7 +1034,7 @@ Undo log存储：undo log采用段的方式进行管理和记录，存放在前�
 • Read Committed：每次select，都生成一个快照读。 
 • Repeatable Read：开启事务后第一个select语句才是快照读的地方。 
 • Serializable：快照读会退化为当前读。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697528962018-44434650-2b31-45f4-bea1-8fa80994269d.png#averageHue=%231b64a9&clientId=u02c600bf-edd1-4&from=paste&height=664&id=u4d317938&originHeight=830&originWidth=1481&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=814873&status=done&style=none&taskId=u9636e437-f49e-4011-af31-0570ff44e85&title=&width=1184.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC02.png)
 在测试中,我们看到即使事务B提交了数据,事务A中也查询不到。 原因就是因为普通的select是快照 
 读，而在当前默认的RR隔离级别下，开启事务后第一个select语句才是快照读的地方，后面执行相同 
 的select语句都是从快照中获取数据，可能不是当前的最新数据，这样也就保证了可重复读。
@@ -1032,12 +1043,17 @@ Undo log存储：undo log采用段的方式进行管理和记录，存放在前�
 
 全称 Multi-Version Concurrency Control，多版本并发控制。指维护一个数据的多个版本， 使得读写操作没有冲突，快照读为MySQL实现MVCC提供了一个非阻塞读功能。MVCC的具体实现，还需要依赖于数据库记录中的**三个隐式字段**、**undo log日志**、**readView**。
 #### 隐藏字段
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697529077305-9afde452-cd65-48b4-a473-aaa294abae98.png#averageHue=%23f7f6f5&clientId=u02c600bf-edd1-4&from=paste&height=158&id=u1b4a0d8b&originHeight=198&originWidth=387&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=29242&status=done&style=none&taskId=uab050e16-ac52-4fdf-9e37-38b738145a1&title=&width=309.6)
+
+|  id  | age  | name |
+| :--: | :--: | :--: |
+|  1   |  1   | tom  |
+|  3   |  3   | cat  |
+
 当我们创建了上面的这张表，我们在查看表结构的时候，就可以显式的看到这三个字段。 实际上除了 
 这三个字段以外，InnoDB还会自动的给我们添加三个隐藏字段及其含义分别是：
 
 | 隐藏字段  | 含义 |
-| --- | --- |
+| :-: | :-: |
 | DB_TRX_ID | 最近修改事务ID，记录插入这条记录或最后一次修改该记录的事务ID |
 | DB_ROLL_PTR | 回滚指针，指向这条记录的上一个版本，用于配合undo log，指向上一个版本 |
 | DB_ROW_ID | 隐藏主键，如果表结构没有指定主键，将会生成该隐藏字段 |
@@ -1057,7 +1073,11 @@ ibd2sdi stu.ibd
 被删除。
 ##### 版本链
 有一张表原始数据为：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697530339540-6f8467da-6f48-4d2c-90ed-e73d2fa988b0.png#averageHue=%23e4e3e3&clientId=u02c600bf-edd1-4&from=paste&height=122&id=uece302f1&originHeight=152&originWidth=997&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=29426&status=done&style=none&taskId=u2ea9e321-d758-44c7-945a-08cf28b7096&title=&width=797.6)
+
+| id   | age  | name | DB_TRX_ID | DB_ROLL_PTR |
+| ---- | ---- | ---- | --------- | ----------- |
+| 30   | 30   | A30  | 1         | null        |
+
 > DB_TRX_ID : 代表最近修改事务ID，记录插入这条记录或最后一次修改该记录的事务ID，是自增的。
 > DB_ROLL_PTR ： 由于这条数据是才插入的，没有被更新过，所以该字段值为null。
 
@@ -1065,24 +1085,25 @@ ibd2sdi stu.ibd
 
 1. 第一步
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697530418242-d95e3629-c0a6-4a5e-89c3-6158099137ae.png#averageHue=%23faf8f7&clientId=u02c600bf-edd1-4&from=paste&height=402&id=ua1c1f608&originHeight=502&originWidth=1257&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=187792&status=done&style=none&taskId=ua428c4d8-e53e-4d1c-ad3b-9ed7312a637&title=&width=1005.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC03.png)
 当事务2执行第一条修改语句时，会记录undo log日志，记录数据变更之前的样子; 然后更新记录， 
 并且记录本次操作的事务ID，回滚指针，回滚指针用来指定如果发生回滚，回滚到哪一个版本。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697530490812-933280ca-f9f7-4ba4-9076-a4d4f8f91f85.png#averageHue=%23faf0e5&clientId=u02c600bf-edd1-4&from=paste&height=362&id=u75cfe495&originHeight=453&originWidth=1472&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=78127&status=done&style=none&taskId=ude06e3b0-f521-4ada-a8f1-0464fca1176&title=&width=1177.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC04.png)
 
 2. 第二步
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697530525552-eabd9833-1410-4fd7-958b-0b3a430fb63a.png#averageHue=%23faf6f5&clientId=u02c600bf-edd1-4&from=paste&height=456&id=uc8561184&originHeight=570&originWidth=1452&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=230084&status=done&style=none&taskId=ucf58c62a-94d3-460c-ac60-7fc88f5e77e&title=&width=1161.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC05.png)
 当事务3执行第一条修改语句时，也会记录undo log日志，记录数据变更之前的样子; 然后更新记 
 录，并且记录本次操作的事务ID，回滚指针，回滚指针用来指定如果发生回滚，回滚到哪一个版本。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697530556904-2a2af9c3-8fbd-4bc4-941d-c891ea5be697.png#averageHue=%23f9ebdd&clientId=u02c600bf-edd1-4&from=paste&height=366&id=u0c24a6e8&originHeight=458&originWidth=1461&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=94071&status=done&style=none&taskId=u556e72d3-11ec-4e84-ade7-9688788cd82&title=&width=1168.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC06.png)
 
 3. 第四步
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697530581583-ca4e38bc-0f81-4b7b-a705-4c232bf989ca.png#averageHue=%23faf4f4&clientId=u02c600bf-edd1-4&from=paste&height=469&id=uc38976a0&originHeight=586&originWidth=1440&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=228000&status=done&style=none&taskId=ud7f2cc6b-3171-4cd1-a9b5-24cfe18180a&title=&width=1152)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC07.png)
 当事务4执行第一条修改语句时，也会记录undo log日志，记录数据变更之前的样子; 然后更新记 
 录，并且记录本次操作的事务ID，回滚指针，回滚指针用来指定如果发生回滚，回滚到哪一个版本。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697530602724-77061ce8-0fa4-4bf8-a7cb-86e35f85880b.png#averageHue=%23f9e7d7&clientId=u02c600bf-edd1-4&from=paste&height=369&id=u476da091&originHeight=461&originWidth=1467&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=103871&status=done&style=none&taskId=u6ca0bb6e-65a4-4d5a-ba97-c8f45a6a5e8&title=&width=1173.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC08.png)
+
 > 最终我们发现，不同事务或相同事务对同一条记录进行修改，会导致该记录的undolog生成一条记录版本链表，链表的头部是最新的旧记录，链表尾部是最早的旧记录。
 
 #### readview
@@ -1100,7 +1121,7 @@ ReadView中包含了四个核心字段：
 在readview中规定了版本链数据的访问规则： 
 > trx_id 代表当前undolog版本链对应事务ID。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1697531304088-8bbf29f4-af55-4ec8-b85d-d2b6bffe55d0.png#averageHue=%23fcfbfb&clientId=u02c600bf-edd1-4&from=paste&height=578&id=u5f20d800&originHeight=723&originWidth=1473&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=153942&status=done&style=none&taskId=ua7609c5d-80bb-46fe-a74a-41fab4bb993&title=&width=1178.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC09.png)
 不同的隔离级别，生成ReadView的时机不同： 
 
 - READ COMMITTED ：在事务中每一次执行快照读时生成ReadView。 
@@ -1113,59 +1134,77 @@ RC隔离级别下，在事务中每一次执行快照读时生成ReadView。
 
 分析事务5中，两次快照读读取数据，是如何获取数据的? 
 在事务5中，查询了两次id为30的记录，由于隔离级别为Read Committed，所以每一次进行快照读都会生成一个ReadView，那么两次生成的ReadView如下。 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698731445437-4371a7df-c528-4f47-8925-5a78cd6813a3.png#averageHue=%23f1f1f0&clientId=u08e59ca1-cc26-4&from=paste&height=318&id=u89e1c0e0&originHeight=397&originWidth=1402&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=134434&status=done&style=none&taskId=u094a3823-8fc5-4bf2-9a72-f4952ebe235&title=&width=1121.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC10.png)
 那么这两次快照读在获取数据时，就需要根据所生成的ReadView以及ReadView的版本链访问规则，到undolog版本链中匹配数据，最终决定此次快照读返回的数据。
 
 ---
 
 - 第一次快照读具体的读取过程：
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698731612133-79d768b1-017c-40cf-aa17-e3094394be01.png#averageHue=%23f3f1ef&clientId=u08e59ca1-cc26-4&from=paste&height=591&id=ue58f8806&originHeight=739&originWidth=1501&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=269840&status=done&style=none&taskId=u73a4de1f-5afe-46a1-b819-fb1fa6a3f15&title=&width=1200.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC11.png)
 在进行匹配时，会从undo log的版本链，从上到下进行挨个匹配：
 
 1. 先匹配 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698731667822-a0c6f8a5-68ad-42d7-ba9a-f00dead949f4.png#averageHue=%23ebe9e8&clientId=u08e59ca1-cc26-4&from=paste&height=142&id=D3t0I&originHeight=178&originWidth=899&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=34394&status=done&style=none&taskId=u8284b059-bbc5-41af-a297-304d5fd3df9&title=&width=719.2)这条记录，这条记录对应的 trx_id为4，也就是将4带入右侧的匹配规则中。 ①不满足 ②不满足 ③不满足 ④也不满足 ，都不满足，则继续匹配undo log版本链的下一条。 
+| id   | age  | name | DB_TRX_ID | DB_ROLL_PTR |
+| ---- | ---- | ---- | --------- | ----------- |
+| 30   | 10   | A3   | 4         | 0x00003     |
+
+这条记录，这条记录对应的 trx_id为4，也就是将4带入右侧的匹配规则中。 ①不满足 ②不满足 ③不满足 ④也不满足 ，都不满足，则继续匹配undo log版本链的下一条。 
 
 2. 再匹配第二条 
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698731721211-659f2e8a-0c6e-4208-8f3e-47b19ab1516f.png#averageHue=%23f6dbc3&clientId=u08e59ca1-cc26-4&from=paste&height=77&id=u6f5caa5e&originHeight=96&originWidth=1015&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=25714&status=done&style=none&taskId=ua2256736-ef99-42de-bbb0-71c377a2a7b&title=&width=812)
+| 0x00003 | 30   | 3    | A3   | 3    | 0x00002 |
+| ------- | ---- | ---- | ---- | ---- | ------- |
+
 这条记录对应的trx_id为3，也就是将3带入右侧的匹配规则中。①不满足 ②不满足 ③不满足 ④也 
 不满足 ，都不满足，则继续匹配undo log版本链的下一条。
 
 3. 再匹配第三条
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698731743207-8493b952-5a75-4b88-bb6c-6b3a0dac73c0.png#averageHue=%23f5d6bc&clientId=u08e59ca1-cc26-4&from=paste&height=64&id=u026cfe58&originHeight=80&originWidth=1025&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=25801&status=done&style=none&taskId=uc3f453b5-f2b8-4444-ae49-d46f30974fb&title=&width=820)这条记录对应的trx_id为2，也就是将2带入右侧的匹配规则中。①不满足 ②满足 终止匹配，此次快照 
+| 0x00002 | 30   | 3    | A30  | 2    | 0x00001 |
+| ------- | ---- | ---- | ---- | ---- | ------- |
+
+这条记录对应的trx_id为2，也就是将2带入右侧的匹配规则中。①不满足 ②满足 终止匹配，此次快照 
 读，返回的数据就是版本链中记录的这条数据。
 
 - 第二次快照读具体的读取过程:
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698731860074-8b94c6f5-1eaf-4644-a51a-4d9f8b58bcd1.png#averageHue=%23f3f1ef&clientId=u08e59ca1-cc26-4&from=paste&height=620&id=ud7018f6a&originHeight=775&originWidth=1467&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=279980&status=done&style=none&taskId=u97479a72-aef3-40e0-8de8-4777d64a006&title=&width=1173.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC12.png)
 在进行匹配时，会从undo log的版本链，从上到下进行挨个匹配：
 
 - 先匹配1
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698731930068-218bc744-596e-4198-89a0-3c80a287839d.png#averageHue=%23e8e6e5&clientId=u08e59ca1-cc26-4&from=paste&height=129&id=ub0c29fb0&originHeight=161&originWidth=889&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=33795&status=done&style=none&taskId=ue2221c67-02bb-48e0-a540-45d7f12bcbc&title=&width=711.2)这条记录，这条记录对应的 trx_id为4，也就是将4带入右侧的匹配规则中。 ①不满足 ②不满足 ③不满足 ④也不满足 ， 都不满足，则继续匹配undo log版本链的下一条。 
+| id   | age  | name | DB_TRX | DB_ROLL_PTR |
+| ---- | ---- | ---- | ------ | ----------- |
+| 30   | 10   | A3   | 4      | 0x00003     |
+
+这条记录，这条记录对应的 trx_id为4，也就是将4带入右侧的匹配规则中。 ①不满足 ②不满足 ③不满足 ④也不满足 ， 都不满足，则继续匹配undo log版本链的下一条。 
 
 - 匹配第2条
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698732008465-fe8369bc-a47d-4e25-90ea-552cd3f77151.png#averageHue=%23f4d1b2&clientId=u08e59ca1-cc26-4&from=paste&height=57&id=ua70634bd&originHeight=71&originWidth=1004&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=24739&status=done&style=none&taskId=udea87da8-25b7-4032-999d-1689ec1ec5c&title=&width=803.2)
+| 0x00003 | 30   | 3    | A3   | 3    | 0x00002 |
+| ------- | ---- | ---- | ---- | ---- | ------- |
+
 这条记录对应的trx_id为3，也就是将3带入右侧的匹配规则中。①不满足 ②满足 。终止匹配，此次 快照读，返回的数据就是版本链中记录的这条数据。 
+
 ##### Read Repeated 隔离级别
 RR隔离级别下，仅在事务中第一次执行快照读时生成ReadView，后续复用该ReadView。 而RR 是可 
 重复读，在一个事务中，执行两次相同的select语句，查询到的结果是一样的。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698732097129-b9b68b4d-411d-4682-adf9-ec370dac7227.png#averageHue=%23f1f1f0&clientId=u08e59ca1-cc26-4&from=paste&height=360&id=ua9a8e350&originHeight=450&originWidth=1462&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=179314&status=done&style=none&taskId=u7c9f47b4-d009-4eb1-bacb-ac7329907f5&title=&width=1169.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC13.png)
 在RR隔离级别下，只是在事务中第一次快照读时生成ReadView，后续都是复用该 ReadView，那么既然ReadView都一样， ReadView的版本链匹配规则也一样， 那么最终快照读返回的结果也是一样的
 
 ---
 
 MVCC的实现原理就是通过 InnoDB表的隐藏字段、UndoLog 版本链、ReadView来实现的。 
 而MVCC + 锁，则实现了事务的隔离性。 而一致性则是由redolog 与 undolog保证。
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698732135290-dd74bb9b-81b1-495f-90bc-e55c06baa65b.png#averageHue=%23faf3f2&clientId=u08e59ca1-cc26-4&from=paste&height=455&id=u76e7366c&originHeight=569&originWidth=1396&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=142536&status=done&style=none&taskId=u81700849-b857-45b9-a409-7dff390601a&title=&width=1116.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/MVCC14.png)
+
 ## MySQL管理
 ### 系统数据库
 Mysql数据库安装完成后，自带了一下四个数据库，具体作用如下：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698732198300-33bbe5d5-0e12-48fc-b0be-808492858f65.png#averageHue=%23fbfbfa&clientId=u08e59ca1-cc26-4&from=paste&height=637&id=u13c7571b&originHeight=796&originWidth=1468&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=188785&status=done&style=none&taskId=u8e66fd38-8387-49a0-a028-9af446d984a&title=&width=1174.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/manage01.png)
+
 ### 常用工具
 #### mysql
 该mysql不是指mysql服务，而是指mysql的客户端工具。
@@ -1288,10 +1327,11 @@ mysqldump -uroot -p1234 -T /root db01 score
 ```sql
 SHOW VARIABLES LIKE '%secure_file_priv%'
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698735988910-3a25b93e-f476-4bba-bb44-01ec99047a33.png#averageHue=%23253e76&clientId=u08e59ca1-cc26-4&from=paste&height=201&id=u2bc51711&originHeight=251&originWidth=737&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=160647&status=done&style=none&taskId=u233ca425-a147-434d-9d32-1409a771c68&title=&width=589.6)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698735976195-d5181198-176f-402b-9704-5e8be49be4eb.png#averageHue=%231e5898&clientId=u08e59ca1-cc26-4&from=paste&height=267&id=uba200622&originHeight=334&originWidth=1472&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=445036&status=done&style=none&taskId=u49a85cdc-f4cb-4eef-be47-7e0ba599b9a&title=&width=1177.6)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/manage02.png)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/manage02.png)
 上述的两个文件 score.sql 中记录的就是表结构文件，而 score.txt 就是表数据文件，但是需要注意表数据文件，并不是记录一条条的insert语句，而是按照一定的格式记录表结构中的数据。如下：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698736247879-0f253648-9235-4bdd-9194-5640a00b51cc.png#averageHue=%231b5ea5&clientId=u08e59ca1-cc26-4&from=paste&height=83&id=uc05a7111&originHeight=104&originWidth=1471&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=124651&status=done&style=none&taskId=ufb528d80-c876-4a48-b6b7-22bf44aeba7&title=&width=1176.8)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/manage03.png)
+
 #### **mysqlimport/source**
 
 1. mysqlimport
@@ -1303,7 +1343,7 @@ mysqlimport 是客户端数据导入工具，用来导入mysqldump 加 -T 参数
 示例 ：
   mysqlimport -uroot -p2143 test /tmp/city.txt
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/32600948/1698737692931-aae909de-9e86-47a8-84bd-4b27159c00ab.png#averageHue=%23254f86&clientId=u08e59ca1-cc26-4&from=paste&height=80&id=u48c02bd3&originHeight=100&originWidth=1408&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=203047&status=done&style=none&taskId=ud766503c-d879-49df-b8e3-d35ae476d09&title=&width=1126.4)
+![image.png](https://cdn.jsdelivr.net/gh/Okita1027/knowledge-database-images@main/database/mysql/manage04.png)
 
 2. source
 
